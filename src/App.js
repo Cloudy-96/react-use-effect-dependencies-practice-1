@@ -11,7 +11,24 @@ export default function App() {
   console.log({ data });
 
   // Write code here.
-  //
+  //useEffect(() => {}, [dependency])
+
+  useEffect(() => {
+    console.log("useEffect triggered", dataType)
+  //if statement
+  if(dataType === "") {
+    console.log("null")
+    setData(null)
+  } else {
+    console.log("fetch request sent")
+    fetch(`https://swapi.dev/api/${dataType}/`)
+    .then((res) => res.json())
+    .then((newData) => {
+      console.log(newData)
+      setData(newData)
+    })
+  }
+  }, [dataType])
 
   return (
     <div>
